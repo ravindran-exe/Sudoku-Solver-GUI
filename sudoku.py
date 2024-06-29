@@ -137,6 +137,11 @@ class SudokuSolverGUI:
                     board[row][col] = 0
 
             return False
+    
+    def open_link(self):
+        import webbrowser
+        webbrowser.open("https://www.linkedin.com/in/ravindranv01/")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
