@@ -95,6 +95,48 @@ class SudokuSolverGUI:
         elif event.keysym == 'Right':
             if col < 8:
                 self.entries[row][col + 1].focus_set()
+    
+    def solve_sudoku(self):
+        board = []
+        empty_grid = True
+        for row in range(9):
+            current_row = []
+            for col in range(9):
+                value = self.entries[row][col].get()
+                if value.isdigit():
+                    current_row.append(int(value))
+                    empty_grid = False
+                else:
+                    current_row.append(0)
+            board.append(current_row)
+
+        if empty_grid:
+            messagebox.showinfo("Info", "Please enter some values.")
+            return
+
+        if self.solve(board):
+            for row in range(9):
+                for col in range(9):
+                    self.entries[row][col].delete(0, tk.END)
+                    self.entries[row][col].insert(0, str(board[row][col]))
+        else:
+            messagebox.showerror("Error", "No solution exists for the given Sudoku.")
+
+
+    def solve(self, board):
+            empty_pos = self.find_empty_position(board)
+            if not empty_pos:
+                return True
+            row, col = empty_pos
+
+            for num in range(1, 10):
+                if self.is_valid(board, num, row, col):
+                    board[row][col] = num
+                    if self.solve(board):
+                        return True
+                    board[row][col] = 0
+
+            return False
 
 if __name__ == "__main__":
     root = tk.Tk()
