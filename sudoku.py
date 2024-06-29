@@ -72,6 +72,29 @@ class SudokuSolverGUI:
                     return False
 
         return True
+    
+    def on_key_press(self, event):
+        row, col = None, None
+        for i in range(9):
+            for j in range(9):
+                if self.entries[i][j] == event.widget:
+                    row, col = i, j
+                    break
+            if row is not None:
+                break
+
+        if event.keysym == 'Up':
+            if row > 0:
+                self.entries[row - 1][col].focus_set()
+        elif event.keysym == 'Down':
+            if row < 8:
+                self.entries[row + 1][col].focus_set()
+        elif event.keysym == 'Left':
+            if col > 0:
+                self.entries[row][col - 1].focus_set()
+        elif event.keysym == 'Right':
+            if col < 8:
+                self.entries[row][col + 1].focus_set()
 
 if __name__ == "__main__":
     root = tk.Tk()
