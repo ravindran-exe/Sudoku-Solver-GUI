@@ -24,3 +24,6 @@ To run the Sudoku Solver GUI:
 - **Navigation**: Use arrow keys to navigate between cells.
 - **Solve**: Click the "Solve" button to solve the Sudoku puzzle.
 - **Clear**: Click the "Clear" button to reset the grid.
+
+![image](https://github.com/ravindran-exe/Sudoku-Solver-GUI/assets/139221594/03754ec2-675a-4593-8b0e-2a1d40700bf1)
+
